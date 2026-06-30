@@ -15,3 +15,9 @@ A Simple CI/CD Data Engineering Project.
 | pyproject.toml | Python project tooling. |
 | README.md | Repo readme file for documentation |
 | requirements.txt | Python dependencies. |
+
+# Features
+
+| Feature | Description |
+| --- | --- |
+| Pre-commits | Runs checks on the commit of a file. Definition in `.pre-commit-config.yaml` |
