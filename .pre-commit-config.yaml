@@ -1,0 +1,42 @@
+repos:
+  # File hygiene
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+        name: Trim trailing whitespace
+      - id: end-of-file-fixer
+        name: Fix end of file
+      - id: check-yaml
+        name: Validate YAML syntax
+      - id: check-added-large-files
+        name: Check for large files
+        args: ['--maxkb=1000']
+  # Python formatting with Black
+  - repo: https://github.com/psf/Black
+    rev: 24.3.0
+    hooks:
+      - id: black
+        name:  Format Python with Black
+        language_version: python3
+        types: [python]
+  # YAML linting
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.35.1
+    hooks:
+      - id: yamllint
+        name: Lint YAML files
+        args: ['-d', '{extends: relaxed, rules: {line-length: {max: 120}}}']
+
+  # SQL linting with SQLFluff
+  - repo: https://github.com/sqfluff/sqlfluff
+    rev: 3.0.7
+    hooks:
+      - id: sqlfluff-lint
+        name: LINT SQL with SQLFluff
+        args: ['--dialect', 'bigquery']
+        additional_dependencies: ['sqlfluff-templater-dbt']
+      - id: sqlfluff-fix
+        name: Fix SQL with SQLFluff
+        args: ['dialect', 'bigquery', '--force']
+        additional_dependencies: ['sqlfluff-templater-dbt']
